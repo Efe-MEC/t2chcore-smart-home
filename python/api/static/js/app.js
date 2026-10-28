@@ -115,6 +115,10 @@ function renderDevices(devices) {
         }
 
         card.append(actions);
+
+        const deleteButton = createElement("button", "button device-delete-button", "Cihazı Sil");
+        deleteButton.addEventListener("click", () => deleteDevice(device.id, deleteButton));
+        card.append(deleteButton);
         container.append(card);
     }
 }
@@ -293,3 +297,78 @@ $("refresh-button").addEventListener("click", () => {
 
 loadDashboard();
 connectWebSocket();
+
+const deviceForm = $("device-form");
+
+deviceForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const submitButton = deviceForm.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+
+    const device = {
+        name: $("device-name-input").value.trim(),
+        id: $("device-id").value.trim().toLowerCase(),
+        room: $("device-room").value,
+        type: $("device-type").value
+    };
+
+    try {
+        const response = await fetch("/api/devices", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(device)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.detail || "Cihaz eklenemedi.");
+        }
+
+        deviceForm.reset();
+        showNotice(
+            `${result.device.name} cihaza kaydedildi. Fiziksel bağlantı henüz doğrulanmadı.`
+        );
+
+        await loadDashboard();
+    } catch (error) {
+        showNotice(error.message || "Cihaz eklenemedi.", true);
+    } finally {
+        submitButton.disabled = false;
+    }
+});
+
+async function deleteDevice(deviceId, button) {
+    const confirmed = window.confirm(
+        `${deviceId} cihazını silmek istediğine emin misin?`
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    button.disabled = true;
+
+    try {
+        const response = await fetch(
+            "/api/devices/" + encodeURIComponent(deviceId),
+            { method: "DELETE" }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.detail || "Cihaz silinemedi.");
+        }
+
+        showNotice(`${deviceId} cihaz kaydı silindi.`);
+        await loadDashboard();
+    } catch (error) {
+        showNotice(error.message || "Cihaz silinemedi.", true);
+    } finally {
+        button.disabled = false;
+    }
+}

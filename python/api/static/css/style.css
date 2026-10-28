@@ -387,3 +387,52 @@ h2 {
         padding: 17px;
     }
 }
+
+/* Device management form */
+.device-form-panel {
+    margin-bottom: 24px;
+    padding: 22px;
+}
+
+.device-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 16px;
+}
+
+.device-form label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary, #aab4ca);
+}
+
+.device-form input,
+.device-form select {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 11px 12px;
+    border: 1px solid var(--border, #303950);
+    border-radius: 8px;
+    background: var(--surface, #111a2d);
+    color: inherit;
+    font: inherit;
+}
+
+.device-form button {
+    align-self: end;
+    min-height: 42px;
+}
+
+.device-delete-button {
+    margin-top: 10px;
+    border: 1px solid #a94444;
+    background: transparent;
+    color: #ff8c8c;
+}
+
+@media (max-width: 600px) {
+    .device-form {
+        grid-template-columns: 1fr;
+    }
+}
