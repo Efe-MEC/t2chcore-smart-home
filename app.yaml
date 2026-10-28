@@ -1,5 +1,6 @@
 name: T2chCore-Smart-Home
-description: ""
-ports: []
+description: "Local AI-powered smart home dashboard and device control"
+ports:
+  - 8080
 bricks: []
 icon: 🏠
