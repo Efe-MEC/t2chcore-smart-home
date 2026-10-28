@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b1020">
+    <title>Smart Home | UNO Q</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/app.js" defer></script>
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <a class="brand" href="/">
+                SMART<span>HOME</span>
+                <small>Powered by Arduino UNO Q</small>
+            </a>
+
+            <div class="nav-heading">EV YÖNETİMİ</div>
+            <nav>
+                <a class="nav-item active" href="/">⌂ <span>Genel Bakış</span></a>
+                <a class="nav-item" href="#devices">☼ <span>Cihazlar</span></a>
+                <a class="nav-item" href="#automations">⌘ <span>Otomasyonlar</span></a>
+                <a class="nav-item" href="#assistant">◉ <span>Sesli Asistan</span></a>
+            </nav>
+
+            <div class="sidebar-note">
+                <strong>Yerel kontrol</strong>
+                <p>Dashboard ve MQTT altyapısı UNO Q üzerinde çalışır.</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">EV KONTROL MERKEZİ</p>
+                    <h1>Genel Bakış</h1>
+                    <p class="subtitle">Akıllı evinin durumunu buradan yönet.</p>
+                </div>
+
+                <div class="connection-pill">
+                    <span id="health-dot" class="status-dot"></span>
+                    <span id="health-text">Bağlantı kontrol ediliyor</span>
+                </div>
+            </header>
+
+            <section class="stats-grid">
+                <article class="panel stat-card">
+                    <p class="stat-label">Kayıtlı cihazlar</p>
+                    <p class="stat-value" id="device-count">—</p>
+                    <p class="stat-description">Sisteme tanımlı cihaz sayısı</p>
+                </article>
+
+                <article class="panel stat-card">
+                    <p class="stat-label">Çevrimiçi cihazlar</p>
+                    <p class="stat-value" id="online-count">—</p>
+                    <p class="stat-description">Cihaz bağlantı bildirimi alınanlar</p>
+                </article>
+
+                <article class="panel stat-card">
+                    <p class="stat-label">MQTT broker</p>
+                    <p class="stat-value" id="mqtt-value">—</p>
+                    <p class="stat-description">Yerel mesaj altyapısı</p>
+                </article>
+            </section>
+
+            <section id="devices">
+                <div class="section-heading">
+                    <div>
+                        <h2>Cihazların</h2>
+                        <p class="subtitle">Durumlar otomatik yenilenir.</p>
+                    </div>
+                    <button class="button button-secondary" id="refresh-button">
+                        ↻ Yenile
+                    </button>
+                </div>
+
+                <div id="device-list" class="device-grid">
+                    <div class="panel empty-state">Cihazlar yükleniyor...</div>
+                </div>
+            </section>
+
+            <section id="automations" class="panel upcoming-panel">
+                <div class="section-heading">
+                    <div>
+                        <h2>Otomasyonlar</h2>
+                        <p class="subtitle">Koşullara bağlı ev kuralları.</p>
+                    </div>
+                    <span class="feature-label">Yakında</span>
+                </div>
+                <p class="muted">
+                    Sensörler ve otomasyon kuralları bir sonraki aşamada eklenecek.
+                </p>
+            </section>
+
+            <section id="assistant" class="panel upcoming-panel">
+                <div class="section-heading">
+                    <div>
+                        <h2>Yerel yapay zekâ asistanı</h2>
+                        <p class="subtitle">İnternet gerektirmeyen akıllı kontrol.</p>
+                    </div>
+                    <span class="feature-label">Yakında</span>
+                </div>
+                <p class="muted">
+                    Yerel dil modeli ve sesli kontrol daha sonra entegre edilecek.
+                </p>
+            </section>
+
+            <div id="notice" class="notice" role="status">
+                API bağlantısı bekleniyor.
+            </div>
+
+            <footer class="footer">
+                <span>UNO Q Smart Home</span>
+                <span id="last-updated">Henüz güncellenmedi</span>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
