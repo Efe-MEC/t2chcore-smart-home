@@ -3,6 +3,9 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
 from api.services.ai_service import chat_with_ai
+from api.services.command_intent_service import (
+    handle_natural_language_command,
+)
 
 
 router = APIRouter(prefix="/api/ai", tags=["AI"])
@@ -23,7 +26,7 @@ class AIChatRequest(BaseModel):
 
 @router.post("/chat")
 def ai_chat(request: AIChatRequest) -> dict:
-    """Send a message to the local AI model."""
+    """Handle validated device commands or continue normal AI chat."""
     message = request.message.strip()
 
     if not message:
@@ -49,10 +52,16 @@ def ai_chat(request: AIChatRequest) -> dict:
         })
 
     try:
+        command_response = handle_natural_language_command(message)
+
+        if command_response is not None:
+            return command_response
+
         return chat_with_ai(
             message=message,
             history=history,
         )
+
     except ValueError as exc:
         raise HTTPException(
             status_code=422,
