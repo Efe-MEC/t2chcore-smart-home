@@ -1,6 +1,6 @@
-# ignore app cache folder
 .cache/
 .git/
-.env/
+.env
+.secrets/
 __pycache__/
-data
+data/

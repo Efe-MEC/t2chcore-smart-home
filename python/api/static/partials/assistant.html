@@ -1,0 +1,78 @@
+
+<section class="content-section" id="assistant">
+    <div class="section-heading">
+        <div>
+            <div class="eyebrow">YEREL YAPAY ZEKÂ</div>
+            <h2>Akıllı Ev Asistanı</h2>
+            <p>
+                UNO Q üzerinde çalışan yerel modeline Türkçe sorular sor.
+            </p>
+        </div>
+
+        <span class="local-ai-label">
+            <span class="status-dot online"></span>
+            Yerel AI
+        </span>
+    </div>
+
+    <div class="panel assistant-panel">
+        <div class="assistant-intro">
+            <div class="assistant-avatar" aria-hidden="true">AI</div>
+
+            <div>
+                <h3>Ev asistanın hazır</h3>
+                <p>
+                    Cihaz listesini ve bilinen durumları yorumlamana
+                    yardımcı olabilirim.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="chat-messages"
+            id="chat-messages"
+            role="log"
+            aria-live="polite"
+            aria-relevant="additions"
+            aria-label="Sohbet mesajları"
+        >
+            <div class="chat-message assistant">
+                <div class="chat-message-label">UNO Q Asistan</div>
+                <div class="chat-message-content">
+                    Merhaba! Akıllı ev sistemin hakkında bana soru
+                    sorabilirsin. Örneğin, kayıtlı cihazları veya
+                    bağlantı durumlarını açıklayabilirim.
+                </div>
+            </div>
+        </div>
+
+        <form class="chat-form" id="ai-chat-form">
+            <label class="visually-hidden" for="ai-message-input">
+                Asistana mesaj yaz
+            </label>
+
+            <textarea
+                id="ai-message-input"
+                name="message"
+                rows="2"
+                maxlength="2000"
+                placeholder="Bir soru yaz... Örn. Hangi cihazlar çevrimiçi?"
+                required
+            ></textarea>
+
+            <button
+                class="button button-primary"
+                id="ai-send-button"
+                type="submit"
+            >
+                Gönder
+                <span aria-hidden="true">↗</span>
+            </button>
+        </form>
+
+        <p class="assistant-disclaimer">
+            Yanıtlar yerel model tarafından oluşturulur. Cihaz kontrol
+            komutlarını uygulamak için cihaz kartlarındaki kontrolleri kullan.
+        </p>
+    </div>
+</section>

@@ -2,3 +2,4 @@ fastapi
 uvicorn
 paho-mqtt
 python-dotenv
+uvicorn[standard]

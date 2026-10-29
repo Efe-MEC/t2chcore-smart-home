@@ -1,0 +1,78 @@
+
+name: t2chcore-smart-home
+
+services:
+  smart-home-app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    container_name: smart-home-app
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      MQTT_HOST: mosquitto
+      MQTT_PORT: "1883"
+      AI_BASE_URL: http://llama-server:8081
+    ports:
+      - "8082:8080"
+    depends_on:
+      mosquitto:
+        condition: service_healthy
+      llama-server:
+        condition: service_started
+    networks:
+      - smart-home-net
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: smart-home-mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./docker/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./.secrets/mosquitto/passwd:/mosquitto/config/passwd:ro
+      - ./data/mosquitto:/mosquitto/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - mosquitto_sub -h 127.0.0.1 -p 1883 -t '$$SYS/broker/uptime' -C 1 -W 3 -u "$$MQTT_USERNAME" -P "$$MQTT_PASSWORD" >/dev/null 2>&1
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    env_file:
+      - .env
+    networks:
+      - smart-home-net
+
+  llama-server:
+    build:
+      context: .
+      dockerfile: docker/llama/Dockerfile
+    container_name: smart-home-llama
+    restart: unless-stopped
+    volumes:
+      - /home/arduino/models/smart-home:/models:ro
+      - /home/arduino/llama.cpp/build/bin:/opt/llama/bin:ro
+    command:
+      - --model
+      - /models/Qwen2.5-1.5B-Instruct-Q4_K_M.gguf
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8081"
+      - --ctx-size
+      - "2048"
+      - --n-predict
+      - "128"
+    expose:
+      - "8081"
+    networks:
+      - smart-home-net
+
+networks:
+  smart-home-net:
+    name: smart-home-net
+    driver: bridge

@@ -1,0 +1,83 @@
+
+<section class="dashboard-section" aria-label="Sistem genel bakışı">
+    <div class="stats-grid">
+        <article class="panel stat-card">
+            <div class="stat-card-top">
+                <span class="stat-label">Kayıtlı Cihazlar</span>
+                <span class="stat-icon" aria-hidden="true">⌘</span>
+            </div>
+
+            <div class="stat-value" id="device-count">0</div>
+            <div class="stat-description">
+                Sisteme tanımlanmış cihazlar
+            </div>
+        </article>
+
+        <article class="panel stat-card">
+            <div class="stat-card-top">
+                <span class="stat-label">Çevrimiçi Cihazlar</span>
+                <span class="stat-icon" aria-hidden="true">⌁</span>
+            </div>
+
+            <div class="stat-value" id="online-count">0</div>
+            <div class="stat-description">
+                Bağlantı bildirimi alınan cihazlar
+            </div>
+        </article>
+
+        <article class="panel stat-card">
+            <div class="stat-card-top">
+                <span class="stat-label">MQTT Broker</span>
+                <span class="stat-icon" aria-hidden="true">⇄</span>
+            </div>
+
+            <div class="stat-value stat-value-text" id="mqtt-value">
+                Bilinmiyor
+            </div>
+            <div class="stat-description">
+                Mesajlaşma servisinin bağlantısı
+            </div>
+        </article>
+    </div>
+
+    <section class="content-section" id="devices">
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow">CİHAZ YÖNETİMİ</div>
+                <h2>Akıllı Cihazlar</h2>
+                <p>Durumları görüntüle ve cihazları kontrol et.</p>
+            </div>
+
+            <span class="section-count" id="device-section-count">
+                0 cihaz
+            </span>
+        </div>
+
+        <div class="device-grid" id="device-list">
+            <div class="panel empty-state">
+                Cihazlar yükleniyor...
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="automations">
+        <div class="section-heading">
+            <div>
+                <div class="eyebrow">AKILLI KURALLAR</div>
+                <h2>Otomasyonlar</h2>
+                <p>Ev otomasyonları için hazırlanan alan.</p>
+            </div>
+        </div>
+
+        <div class="panel upcoming-feature">
+            <div class="upcoming-icon" aria-hidden="true">⟳</div>
+            <div>
+                <h3>Otomasyonlar yakında</h3>
+                <p>
+                    Zamanlama ve cihaz durumuna bağlı kurallar
+                    sonraki aşamada eklenecek.
+                </p>
+            </div>
+        </div>
+    </section>
+</section>

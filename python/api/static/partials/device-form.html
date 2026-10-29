@@ -1,0 +1,80 @@
+
+<section class="content-section" id="add-device">
+    <div class="section-heading">
+        <div>
+            <div class="eyebrow">CİHAZ KAYDI</div>
+            <h2>Yeni Cihaz Ekle</h2>
+            <p>
+                Cihazı panele kaydet. Fiziksel bağlantı ayrıca kurulmalıdır.
+            </p>
+        </div>
+    </div>
+
+    <form class="panel device-form" id="device-form">
+        <div class="form-grid">
+            <div class="form-field">
+                <label for="device-name-input">Cihaz adı</label>
+                <input
+                    id="device-name-input"
+                    name="name"
+                    type="text"
+                    placeholder="Örn. Salon Lambası"
+                    maxlength="100"
+                    required
+                >
+            </div>
+
+            <div class="form-field">
+                <label for="device-id">Cihaz kimliği</label>
+                <input
+                    id="device-id"
+                    name="id"
+                    type="text"
+                    placeholder="Örn. living-room-light"
+                    pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)*"
+                    maxlength="80"
+                    required
+                    aria-describedby="device-id-help"
+                >
+                <span class="field-help" id="device-id-help">
+                    Boşluk yerine tire kullan. Örn. salon-lambasi
+                </span>
+            </div>
+
+            <div class="form-field">
+                <label for="device-room">Oda</label>
+                <select id="device-room" name="room" required>
+                    <option value="living-room">Salon</option>
+                    <option value="bedroom">Yatak Odası</option>
+                    <option value="kitchen">Mutfak</option>
+                    <option value="bathroom">Banyo</option>
+                    <option value="hallway">Koridor</option>
+                    <option value="balcony">Balkon</option>
+                    <option value="other">Diğer</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="device-type">Cihaz türü</label>
+                <select id="device-type" name="type" required>
+                    <option value="light">Aydınlatma</option>
+                    <option value="switch">Anahtar</option>
+                    <option value="sensor">Sensör</option>
+                    <option value="thermostat">Termostat</option>
+                    <option value="unknown">Diğer / Bilinmiyor</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <p class="form-note">
+                Bu işlem yalnızca cihaz kaydı oluşturur.
+            </p>
+
+            <button class="button button-primary" type="submit">
+                <span aria-hidden="true">+</span>
+                Cihazı Kaydet
+            </button>
+        </div>
+    </form>
+</section>

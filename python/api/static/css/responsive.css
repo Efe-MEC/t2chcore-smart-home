@@ -1,0 +1,393 @@
+
+/* Medium screens and tablets */
+
+@media (max-width: 900px) {
+    :root {
+        --sidebar-width: 190px;
+    }
+
+    .sidebar {
+        padding: 23px 12px 18px;
+    }
+
+    .brand {
+        grid-template-columns: 36px minmax(0, 1fr);
+        column-gap: 8px;
+        margin-bottom: 36px;
+    }
+
+    .brand-mark {
+        width: 36px;
+        height: 36px;
+        border-radius: 11px;
+        font-size: 22px;
+    }
+
+    .brand-name {
+        font-size: 15px;
+    }
+
+    .brand small {
+        font-size: 9px;
+    }
+
+    .main-content {
+        padding: 29px 20px 22px;
+    }
+
+    .stats-grid {
+        gap: 11px;
+    }
+
+    .stat-card {
+        min-height: 138px;
+        padding: 17px;
+    }
+
+    .stat-description {
+        font-size: 10px;
+    }
+
+    .device-grid {
+        gap: 12px;
+    }
+
+    .device-card {
+        padding: 16px;
+    }
+
+    .device-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .device-card-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .device-actions {
+        justify-content: flex-start;
+    }
+}
+
+/* Phones and narrow tablets */
+
+@media (max-width: 640px) {
+    .layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: sticky;
+        top: 0;
+        right: 0;
+        bottom: auto;
+        left: 0;
+        width: 100%;
+        height: auto;
+        padding: 12px 15px;
+        overflow: visible;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        background: rgba(8, 12, 24, 0.96);
+    }
+
+    .brand {
+        display: grid;
+        grid-template-columns: 34px minmax(0, 1fr);
+        margin: 0 0 12px;
+    }
+
+    .brand-mark {
+        width: 34px;
+        height: 34px;
+        font-size: 21px;
+    }
+
+    .brand-name {
+        font-size: 14px;
+    }
+
+    .brand small {
+        margin-top: -7px;
+        font-size: 9px;
+    }
+
+    .nav-heading,
+    .sidebar-spacer,
+    .sidebar-status,
+    .sidebar-note {
+        display: none;
+    }
+
+    .main-nav {
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 1px;
+        scrollbar-width: none;
+    }
+
+    .main-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-item {
+        min-height: 37px;
+        flex: 0 0 auto;
+        justify-content: center;
+        gap: 6px;
+        padding: 8px 10px;
+        border-radius: 9px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    .nav-item.active::before {
+        top: auto;
+        right: 10px;
+        bottom: -1px;
+        left: 10px;
+        width: auto;
+        height: 2px;
+        border-radius: 3px 3px 0 0;
+    }
+
+    .nav-icon {
+        width: auto;
+        font-size: 15px;
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 24px 15px 18px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 17px;
+        margin-bottom: 23px;
+    }
+
+    .topbar-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .connection-pill {
+        min-height: 36px;
+        font-size: 10px;
+    }
+
+    h1 {
+        font-size: 29px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .stat-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        min-height: auto;
+        align-items: center;
+        padding: 15px 17px;
+    }
+
+    .stat-topline {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .stat-icon {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+    }
+
+    .stat-value {
+        grid-column: 1;
+        margin-top: 8px;
+        margin-bottom: 4px;
+        font-size: 27px;
+    }
+
+    .stat-description {
+        grid-column: 1 / -1;
+        margin-top: 2px;
+    }
+
+    #devices {
+        margin-top: 29px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .section-counter {
+        margin-top: 4px;
+        font-size: 9px;
+    }
+
+    .device-form-panel,
+    .assistant-panel,
+    .upcoming-panel {
+        padding: 17px;
+        border-radius: 16px;
+    }
+
+    .device-form {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-actions {
+        justify-content: stretch;
+    }
+
+    .form-actions .button {
+        width: 100%;
+    }
+
+    .device-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .device-card {
+        padding: 17px;
+    }
+
+    .device-card-header {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .device-card-footer {
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .device-actions {
+        justify-content: flex-end;
+    }
+
+    .upcoming-content {
+        gap: 12px;
+        padding: 14px;
+    }
+
+    .upcoming-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .assistant-intro {
+        gap: 11px;
+        padding: 14px;
+    }
+
+    .assistant-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 11px;
+        font-size: 20px;
+    }
+
+    .assistant-intro h3 {
+        font-size: 14px;
+    }
+
+    .chat-messages {
+        max-height: 360px;
+    }
+
+    .chat-message {
+        max-width: 96%;
+    }
+
+    .chat-form {
+        gap: 6px;
+        padding: 7px;
+    }
+
+    .chat-form textarea {
+        padding: 10px 7px;
+        font-size: 12px;
+    }
+
+    .chat-send-button {
+        min-width: 72px;
+        padding: 9px 10px;
+        font-size: 11px;
+    }
+
+    .local-ai-label {
+        gap: 6px;
+        padding: 6px 8px;
+        font-size: 9px;
+    }
+
+    .footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    #last-updated {
+        text-align: left;
+    }
+}
+
+/* Very narrow phones */
+
+@media (max-width: 380px) {
+    .main-content {
+        padding-right: 11px;
+        padding-left: 11px;
+    }
+
+    .sidebar {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .nav-item {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .nav-item span:not(.nav-icon) {
+        font-size: 9px;
+    }
+
+    .device-card-header {
+        flex-direction: column;
+    }
+
+    .device-card-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .section-heading {
+        flex-wrap: wrap;
+    }
+}

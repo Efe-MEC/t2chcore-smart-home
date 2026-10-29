@@ -1,24 +1,35 @@
-from threading import Thread
 
-import uvicorn
-from arduino.app_utils import App
-
-from api.app import app
+import os
+import sys
+from pathlib import Path
 
 
-def start_web_server():
+PYTHON_DIR = Path(__file__).resolve().parent
+PROJECT_DIR = PYTHON_DIR.parent
+
+# Ensure imports such as "from api.core.config import ..." work
+# regardless of the directory from which the application starts.
+if str(PYTHON_DIR) not in sys.path:
+    sys.path.insert(0, str(PYTHON_DIR))
+
+# Keep the project root available for project-level resources.
+if str(PROJECT_DIR) not in sys.path:
+    sys.path.insert(0, str(PROJECT_DIR))
+
+
+def main() -> None:
+    import uvicorn
+
+    host = os.getenv("API_HOST", "0.0.0.0")
+    port = int(os.getenv("API_PORT", "8080"))
+
     uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=8080,
-        log_level="info",
+        "api.app:app",
+        host=host,
+        port=port,
+        reload=False,
     )
 
 
 if __name__ == "__main__":
-    Thread(
-        target=start_web_server,
-        daemon=True,
-    ).start()
-
-    App.run()
+    main()

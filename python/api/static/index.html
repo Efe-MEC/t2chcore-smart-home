@@ -1,174 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0b1020">
-    <title>Smart Home | UNO Q</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="T2chCore Home System — yerel akıllı ev kontrol paneli."
+    >
+    <meta name="theme-color" content="#0b1120">
+
+    <title>T2chCore Home System</title>
+
+    <link rel="icon" type="image/png" href="/static/logo.png">
+    <link rel="apple-touch-icon" href="/static/logo.png">
     <link rel="stylesheet" href="/static/css/style.css">
-    <script src="/static/js/app.js" defer></script>
+
+    <script type="module" src="/static/js/app.js"></script>
 </head>
+
 <body>
-    <div class="layout">
-        <aside class="sidebar">
-            <a class="brand" href="/">
-                SMART<span>HOME</span>
-                <small>Powered by Arduino UNO Q</small>
-            </a>
+    <div class="app-shell">
+        <div id="sidebar-slot">
+            <aside class="sidebar" aria-label="Ana navigasyon">
+                <div class="brand">
+                    <img
+                        class="brand-logo"
+                        src="/static/logo.png"
+                        alt="T2chCore Home System logosu"
+                    >
+                    <div class="brand-copy">
+                        <span class="brand-title">T2chCore</span>
+                        <span class="brand-subtitle">HOME SYSTEM</span>
+                    </div>
+                </div>
 
-            <div class="nav-heading">EV YÖNETİMİ</div>
-            <nav>
-                <a class="nav-item active" href="/">⌂ <span>Genel Bakış</span></a>
-                <a class="nav-item" href="#devices">☼ <span>Cihazlar</span></a>
-                <a class="nav-item" href="#automations">⌘ <span>Otomasyonlar</span></a>
-                <a class="nav-item" href="#assistant">◉ <span>Sesli Asistan</span></a>
-            </nav>
-
-            <div class="sidebar-note">
-                <strong>Yerel kontrol</strong>
-                <p>Dashboard ve MQTT altyapısı UNO Q üzerinde çalışır.</p>
-            </div>
-        </aside>
+                <p class="sidebar-label">MENÜ</p>
+                <p class="sidebar-status-text">Arayüz yükleniyor...</p>
+            </aside>
+        </div>
 
         <main class="main-content">
-            <header class="topbar">
-                <div>
-                    <p class="eyebrow">EV KONTROL MERKEZİ</p>
-                    <h1>Genel Bakış</h1>
-                    <p class="subtitle">Akıllı evinin durumunu buradan yönet.</p>
-                </div>
-
-                <div class="connection-pill">
-                    <span id="health-dot" class="status-dot"></span>
-                    <span id="health-text">Bağlantı kontrol ediliyor</span>
-                </div>
-            </header>
-
-            <section class="stats-grid">
-                <article class="panel stat-card">
-                    <p class="stat-label">Kayıtlı cihazlar</p>
-                    <p class="stat-value" id="device-count">—</p>
-                    <p class="stat-description">Sisteme tanımlı cihaz sayısı</p>
-                </article>
-
-                <article class="panel stat-card">
-                    <p class="stat-label">Çevrimiçi cihazlar</p>
-                    <p class="stat-value" id="online-count">—</p>
-                    <p class="stat-description">Cihaz bağlantı bildirimi alınanlar</p>
-                </article>
-
-                <article class="panel stat-card">
-                    <p class="stat-label">MQTT broker</p>
-                    <p class="stat-value" id="mqtt-value">—</p>
-                    <p class="stat-description">Yerel mesaj altyapısı</p>
-                </article>
-            </section>
-
-            <section id="devices">
-                <div class="section-heading">
-                    <div>
-                        <h2>Cihazların</h2>
-                        <p class="subtitle">Durumlar otomatik yenilenir.</p>
+            <div id="header-slot">
+                <header class="topbar">
+                    <div class="topbar-heading">
+                        <h1>Kontrol Merkezi</h1>
+                        <p>Akıllı ev sistemin yükleniyor...</p>
                     </div>
-                    <button class="button button-secondary" id="refresh-button">
-                        ↻ Yenile
-                    </button>
-                </div>
-
-<div class="panel device-form-panel">
-    <div class="section-heading">
-        <div>
-            <h2>Yeni cihaz ekle</h2>
-            <p class="subtitle">Cihazını ev sistemine kaydet.</p>
-        </div>
-    </div>
-
-    <form id="device-form" class="device-form">
-        <label for="device-name-input">Cihaz adı</label>
-        <input
-            id="device-name-input"
-            name="name"
-            type="text"
-            placeholder="Örn. Mutfak Lambası"
-            required
-            maxlength="80"
-        >
-
-        <label for="device-id">Cihaz kimliği</label>
-        <input
-            id="device-id"
-            name="id"
-            type="text"
-            placeholder="Örn. kitchen-light"
-            pattern="[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*"
-            title="Küçük harf, rakam ve tire kullanın."
-            required
-            maxlength="80"
-        >
-
-        <label for="device-room">Oda</label>
-        <select id="device-room" name="room" required>
-            <option value="living-room">Salon</option>
-            <option value="bedroom">Yatak Odası</option>
-            <option value="kitchen">Mutfak</option>
-            <option value="bathroom">Banyo</option>
-            <option value="hallway">Koridor</option>
-            <option value="balcony">Balkon</option>
-        </select>
-
-        <label for="device-type">Cihaz türü</label>
-        <select id="device-type" name="type" required>
-            <option value="light">Lamba</option>
-            <option value="switch">Anahtar</option>
-            <option value="sensor">Sensör</option>
-            <option value="thermostat">Termostat</option>
-            <option value="unknown">Diğer</option>
-        </select>
-
-        <button class="button button-primary" type="submit">
-            + Cihaz Ekle
-        </button>
-    </form>
-</div>
-                <div id="device-list" class="device-grid">
-                    <div class="panel empty-state">Cihazlar yükleniyor...</div>
-                </div>
-            </section>
-
-            <section id="automations" class="panel upcoming-panel">
-                <div class="section-heading">
-                    <div>
-                        <h2>Otomasyonlar</h2>
-                        <p class="subtitle">Koşullara bağlı ev kuralları.</p>
-                    </div>
-                    <span class="feature-label">Yakında</span>
-                </div>
-                <p class="muted">
-                    Sensörler ve otomasyon kuralları bir sonraki aşamada eklenecek.
-                </p>
-            </section>
-
-            <section id="assistant" class="panel upcoming-panel">
-                <div class="section-heading">
-                    <div>
-                        <h2>Yerel yapay zekâ asistanı</h2>
-                        <p class="subtitle">İnternet gerektirmeyen akıllı kontrol.</p>
-                    </div>
-                    <span class="feature-label">Yakında</span>
-                </div>
-                <p class="muted">
-                    Yerel dil modeli ve sesli kontrol daha sonra entegre edilecek.
-                </p>
-            </section>
-
-            <div id="notice" class="notice" role="status">
-                API bağlantısı bekleniyor.
+                </header>
             </div>
 
-            <footer class="footer">
-                <span>UNO Q Smart Home</span>
-                <span id="last-updated">Henüz güncellenmedi</span>
-            </footer>
+            <div
+                id="notice"
+                class="notice"
+                role="status"
+                aria-live="polite"
+                hidden
+            ></div>
+
+            <div id="overview-slot">
+                <section class="content-section">
+                    <div class="panel empty-state">
+                        Dashboard yükleniyor...
+                    </div>
+                </section>
+            </div>
+
+            <div id="device-form-slot"></div>
+            <div id="assistant-slot"></div>
+            <div id="footer-slot"></div>
         </main>
     </div>
 </body>
