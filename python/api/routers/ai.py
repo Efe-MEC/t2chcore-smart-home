@@ -6,6 +6,7 @@ from api.services.ai_service import chat_with_ai
 from api.services.command_intent_service import (
     handle_natural_language_command,
 )
+from api.services.device_query_service import answer_device_query
 
 
 router = APIRouter(prefix="/api/ai", tags=["AI"])
@@ -56,6 +57,11 @@ def ai_chat(request: AIChatRequest) -> dict:
 
         if command_response is not None:
             return command_response
+
+        device_response = answer_device_query(message)
+
+        if device_response is not None:
+            return device_response
 
         return chat_with_ai(
             message=message,
