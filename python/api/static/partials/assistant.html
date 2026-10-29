@@ -61,6 +61,28 @@
             ></textarea>
 
             <button
+                class="button button-secondary voice-button"
+                id="ai-mic-button"
+                type="button"
+                aria-pressed="false"
+                title="Türkçe sesli komut"
+            >
+                <span aria-hidden="true">🎙</span>
+                Konuş
+            </button>
+
+            <button
+                class="button button-secondary voice-button"
+                id="ai-voice-toggle"
+                type="button"
+                aria-pressed="true"
+                title="Sesli yanıtı aç veya kapat"
+            >
+                <span aria-hidden="true">🔊</span>
+                Sesli yanıt açık
+            </button>
+
+            <button
                 class="button button-primary"
                 id="ai-send-button"
                 type="submit"
@@ -69,6 +91,14 @@
                 <span aria-hidden="true">↗</span>
             </button>
         </form>
+
+        <p
+            id="ai-voice-status"
+            class="voice-status"
+            role="status"
+            aria-live="polite"
+            hidden
+        ></p>
 
         <p class="assistant-disclaimer">
            Yerel yapay zekâ ile soru sorabilir ve desteklenen ışık veya

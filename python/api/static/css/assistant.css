@@ -281,3 +281,46 @@
         opacity: 1;
     }
 }
+
+/* Voice controls */
+
+.voice-button {
+    min-height: 40px;
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.voice-button.is-listening {
+    border-color: var(--accent-border);
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.voice-status {
+    margin: 10px 2px 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.voice-status.is-error {
+    color: var(--danger, #ff7f91);
+}
+
+@media (max-width: 680px) {
+    .chat-form {
+        flex-wrap: wrap;
+    }
+
+    .chat-form textarea {
+        flex-basis: 100%;
+    }
+
+    .voice-button {
+        flex: 1 1 auto;
+    }
+
+    .chat-send-button {
+        flex: 1 1 auto;
+    }
+}
