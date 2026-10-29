@@ -10,7 +10,7 @@ from api.services.device_service import get_device_snapshot
 
 logger = logging.getLogger(__name__)
 
-AI_TIMEOUT_SECONDS = 90
+AI_TIMEOUT_SECONDS = 120
 AI_HEALTH_TIMEOUT_SECONDS = 5
 
 
@@ -124,7 +124,7 @@ def chat_with_ai(
         {
             "messages": messages,
             "temperature": 0.3,
-            "max_tokens": 300,
+            "max_tokens": 120,
             "stream": False,
         },
         ensure_ascii=False,
